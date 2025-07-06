@@ -1,4 +1,3 @@
-import { Controller } from "@nestjs/common";
 import { BotService } from "./bot.service";
 import { Action, Command, Ctx, On, Start, Update } from "nestjs-telegraf";
 import { Context } from "telegraf";
@@ -12,9 +11,19 @@ export class BotUpdate {
     await this.botService.start(ctx);
   }
 
-  @Action(/^sahiy__+\d+/)
+  @Action(/^sahiy__\d+/)
   async onClickSahiy(@Ctx() ctx: Context) {
     await this.botService.ClickSahiy(ctx);
+  }
+
+  @Action(/^sabrli__\d+/)
+  async onClickSabrli(@Ctx() ctx: Context) {
+    await this.botService.ClickSabrli(ctx);
+  }
+
+  @Action(/^region__.+/)
+  async onRegionSelect(@Ctx() ctx: Context) {
+    await this.botService.selectRegion(ctx);
   }
 
   @On("text")
@@ -25,6 +34,11 @@ export class BotUpdate {
   @On("contact")
   async contact(@Ctx() ctx: Context) {
     await this.botService.contact(ctx);
+  }
+
+  @On("location")
+  async onLocation(@Ctx() ctx: Context) {
+    await this.botService.location(ctx);
   }
 
   @Command("stop")

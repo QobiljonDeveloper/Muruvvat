@@ -1,5 +1,3 @@
-// src/bot/models/bot.model.ts
-
 import {
   Table,
   Column,
@@ -13,11 +11,15 @@ interface IBotCreationAttr {
   first_name?: string;
   last_name?: string;
   phone_number?: string;
+  region?: string;
+  district?: string;
   lang?: string;
   name?: string;
   role?: string;
   last_state?: string;
   status?: boolean;
+  latitude?: number;
+  longitude?: number;
 }
 
 @Table({ tableName: "users", timestamps: false })
@@ -49,4 +51,22 @@ export class Bot extends Model<Bot, IBotCreationAttr> {
 
   @Column({ type: DataType.STRING, allowNull: true })
   declare last_state: string;
+
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare region: string;
+
+  @Column({ type: DataType.STRING, allowNull: true })
+  declare district: string;
+
+  @Column({ type: DataType.FLOAT, allowNull: true })
+  declare latitude: number;
+
+  @Column({ type: DataType.FLOAT, allowNull: true })
+  declare longitude: number;
+
+  @Column({ type: DataType.STRING })
+  declare sadaqa_target: string;
+
+  @Column({ type: DataType.STRING })
+  declare sadaqa_item: string;
 }
