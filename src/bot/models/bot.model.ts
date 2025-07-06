@@ -20,6 +20,8 @@ interface IBotCreationAttr {
   status?: boolean;
   latitude?: number;
   longitude?: number;
+  sadaqa_item?: string;
+  sadaqa_targe?: string;
 }
 
 @Table({ tableName: "users", timestamps: false })
